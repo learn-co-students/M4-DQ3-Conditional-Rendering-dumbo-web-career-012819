@@ -4,6 +4,35 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  state = {
+    page: null
+  }
+
+
+  whichDisplay = (icon) => {
+    switch (icon) {
+      case "profile":
+        this.setState({
+          page: <Profile />
+        })
+        break;
+      case "photo":
+        this.setState({
+          page: <Photos />
+        })
+        break;
+      case "cocktail":
+        this.setState({
+          page: <Cocktails />
+        })
+        break;
+      case "pokemon":
+        this.setState({
+          page: <Pokemon />
+        })
+        break;
+    }
+  }
 
   render() {
 
@@ -13,11 +42,11 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const detailsToDisplay = <div>{this.state.page}</div>
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar whichDisplay={this.whichDisplay}/>
         {detailsToDisplay}
       </div>
     )
